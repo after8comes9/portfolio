@@ -160,7 +160,20 @@ onMounted(() => {
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('click', onClick)
   if (isMobile && window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', onDeviceOrientation)
+    // iOS 13+ requires permission request via user gesture
+    const requestPermission = (DeviceOrientationEvent as any).requestPermission
+    if (typeof requestPermission === 'function') {
+      document.addEventListener('touchstart', function enableGyro() {
+        requestPermission().then((state: string) => {
+          if (state === 'granted') {
+            window.addEventListener('deviceorientation', onDeviceOrientation)
+          }
+        }).catch(() => {})
+        document.removeEventListener('touchstart', enableGyro)
+      }, { once: true })
+    } else {
+      window.addEventListener('deviceorientation', onDeviceOrientation)
+    }
   }
 })
 
