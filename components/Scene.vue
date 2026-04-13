@@ -38,5 +38,12 @@ const emit = defineEmits<{
   z-index: 1;
   pointer-events: auto;
   background: var(--color-bg);
+  touch-action: pan-y;
+}
+
+@media (max-width: 768px) {
+  .scene-canvas {
+    pointer-events: none;
+  }
 }
 </style>
