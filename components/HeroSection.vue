@@ -152,10 +152,19 @@ onMounted(() => {
 @media (max-width: 768px) {
   .hero__content {
     padding: 0 1rem;
+    width: 100%;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
   .hero__subtitle {
     font-size: 0.75rem;
+  }
+
+  .hero__scroll-cue {
+    bottom: 5rem;
   }
 }
 </style>

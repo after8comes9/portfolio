@@ -85,12 +85,6 @@ function onMouseMove(e: MouseEvent) {
   ndcMouse.y = -(e.clientY / window.innerHeight) * 2 + 1
 }
 
-function onDeviceOrientation(e: DeviceOrientationEvent) {
-  if (e.gamma !== null && e.beta !== null) {
-    targetRotation.value.y = (e.gamma / 90) * 0.08
-    targetRotation.value.x = ((e.beta - 45) / 90) * -0.05
-  }
-}
 
 function onClick(e: MouseEvent) {
   if (isMobile) {
@@ -159,28 +153,11 @@ onMounted(() => {
 
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('click', onClick)
-  if (isMobile && window.DeviceOrientationEvent) {
-    // iOS 13+ requires permission request via user gesture
-    const requestPermission = (DeviceOrientationEvent as any).requestPermission
-    if (typeof requestPermission === 'function') {
-      document.addEventListener('touchstart', function enableGyro() {
-        requestPermission().then((state: string) => {
-          if (state === 'granted') {
-            window.addEventListener('deviceorientation', onDeviceOrientation)
-          }
-        }).catch(() => {})
-        document.removeEventListener('touchstart', enableGyro)
-      }, { once: true })
-    } else {
-      window.addEventListener('deviceorientation', onDeviceOrientation)
-    }
-  }
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', onMouseMove)
   window.removeEventListener('click', onClick)
-  window.removeEventListener('deviceorientation', onDeviceOrientation)
   document.body.classList.remove('video-hover')
 
   // Dispose video textures and materials

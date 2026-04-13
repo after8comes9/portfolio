@@ -74,6 +74,12 @@ function closeVideo() {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .content {
+    pointer-events: auto;
+  }
+}
+
 .section-title {
   font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 700;
