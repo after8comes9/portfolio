@@ -115,6 +115,7 @@ onMounted(() => {
   const mats: THREE.ShaderMaterial[] = []
   props.cases.forEach((c) => {
     const video = document.createElement('video')
+    video.crossOrigin = 'anonymous'
     video.src = c.video
     video.loop = true
     video.muted = true
