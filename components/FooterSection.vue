@@ -44,10 +44,10 @@ onUnmounted(() => {
   <footer ref="footerRef" class="footer">
     <h2 ref="titleRef" class="footer__title">Contact me</h2>
     <div ref="linksRef" class="footer__links">
-      <a href="mailto:stijndeschryver@icloud.com" class="footer__link" data-cursor-hover>
+      <a href="mailto:stijndeschryver@icloud.com" class="footer__link" data-cursor-hover aria-label="Email">
         <Icon name="mdi:email-outline" size="32" />
       </a>
-      <a href="https://www.linkedin.com/in/stijndeschryver/" target="_blank" rel="noopener" class="footer__link" data-cursor-hover>
+      <a href="https://www.linkedin.com/in/stijndeschryver/" target="_blank" rel="noopener" class="footer__link" data-cursor-hover aria-label="LinkedIn">
         <Icon name="mdi:linkedin" size="32" />
       </a>
     </div>
